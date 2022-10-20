@@ -6,11 +6,100 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
     <title>Main Page</title>
 </head>
 
 <body>
     <h1>BREAD (Browse, Read, Edit, Add, Delete)</h1>
+    <hr>
+    <h2>Filters</h2>
+    <div class="container">
+        <form action="" method="get">
+            <input type="hidden" name="page" value="1">
+            <div class="row">
+                <div class="col-15">
+                    <input type="checkbox" name="idCheck" <%=query.idCheck ? 'checked' : '' %> >
+                    <label for="idCheck">ID</label>
+                </div>
+                <div class="col-85">
+                    <input type="text" name="id" placeholder="Tulis ID" value="<%=query.id%>">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <input type="checkbox" name="stringCheck" <%=query.stringCheck ? 'checked' : '' %>
+                    <label for="stringCheck">String</label>
+                </div>
+                <div class="col-85">
+                    <input type="text" name="string" placeholder="Tulis String" value="<%=query.string%>">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <input type="checkbox" name="integerCheck" <%=query.integerCheck ? 'checked' : '' %> >
+                    <label for="integerCheck">Integer</label>
+                </div>
+                <div class="col-85">
+                    <input type="number" name="integer" placeholder="Tulis Integer" value="<%=query.integer%>">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <input type="checkbox" name="floatCheck" <%=query.floatCheck ? 'checked' : '' %>>
+                    <label for="floatCheck">Float</label>
+                </div>
+                <div class="col-85">
+                    <input type="number" name="float" placeholder="Tulis Float" value="<%=query.float%>">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <input type="checkbox" name="dateCheck" <%=query.dateCheck ? 'checked' : '' %> >
+                    <label for="dateCheck">Date</label>
+                </div>
+                <h3>From</h3>
+
+                <div class="col-85">
+                    <input type="date" name="startDate" value="<%=query.startDate%>">
+                </div>
+                <div class="col-15"></div>
+                <div class="col-85">
+
+                    <h3> To </h3>
+
+                </div>
+                <div class="col-15"></div>
+                <div class="col-85">
+                    <input type="date" name="endDate" value="<%=query.endDate%>">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <input type="checkbox" name="booleanCheck" <%=query.booleanCheck ? 'checked' : '' %> >
+                    <label for="booleanCheck">Boolean</label>
+                </div>
+                <div class="col-85">
+                    <select id="boolean" , name="boolean">
+                        <option value="" disabled selected>--Choose Boolean--</option>
+                        <option value=1 <%=query.boolean==1 ? 'selected' : '' %>>True</option>
+                        <option value=0 <%=query.boolean==0 ? 'selected' : '' %>>False</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <a href="/" type="reset" class="btnadd"><i class="fa-solid fa-arrows-rotate"></i></a>
+            </div>
+        </form>
+    </div>
+
     <table id="list">
         <thead>
             <tr>
@@ -27,34 +116,54 @@
             <% data.forEach((item, index)=> { %>
                 <tr>
                     <td>
-                        <%= index + 1 %>
+                        <%=item.id%>
                     </td>
                     <td>
-                        <%= item.string %>
+                        <%=item.string%>
                     </td>
                     <td>
-                        <%= item.integer %>
+                        <%=item.integer%>
                     </td>
                     <td>
-                        <%= item.float %>
+                        <%=item.float%>
                     </td>
                     <td>
-                        <%= item.date %>
+                        <%=item.date%>
                     </td>
                     <td>
-                        <%= item.boolean %>
+                        <%= item.boolean==1 ? 'True' : 'False' %>
                     </td>
                     <td>
-                        <a href="/edit/<%= index %>" class="btnedit">Edit</a>
-                        <a href="/delete/<%= index %>" class="btndel">Delete</a>
+                        <a href="/edit/<%= item.id %>" class="btnedit"><i class="fa-solid fa-pen"></i></a>
+                        <a href="/delete/<%= item.id %>" class="btndel"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
                 <% }) %>
         </tbody>
     </table>
     <br>
-    <a href="/add" class="btnadd">Add</a>
-
+    <div class="flex">
+        <div>
+            <a href="/add" type="add" class="btnadd"><i class="fa-solid fa-plus"></i></a>
+        </div>
+    
+        <div class="pagination">
+            <%if (page !=1){ %>
+                <a href="<%=url.replace(`page=${page}`,`page=${parseInt(page)-1}`)%>">&laquo;</a>
+                <% }%>
+    
+                    <% for (let i=1; i <=pages; i++) { %>
+                        <a class="<%= i == page ? 'active' : ''%>" href="<%=url.replace(`page=${page}`,`page=${i}`) %>">
+                            <%= i%>
+                        </a>
+                        <% }%>
+    
+    
+                            <%if (page <=pages && page !=pages){ %>
+                                <a href="<%=url.replace(`page=${page}`,`page=${parseInt(page)+1}`) %>">&raquo;</a>
+                                <% }%>
+        </div>
+    </div>
 </body>
 
 </html>

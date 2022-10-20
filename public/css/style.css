@@ -46,7 +46,7 @@ h1 {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #047BFC;
+    background-color: blue;
     border: none;
     border-radius: 4px;
     font-weight: bold;
@@ -58,7 +58,7 @@ h1 {
 }
 
 .btnedit {
-    background-color: #39ca67;
+    background-color: green;
     color: white;
     padding: 6px 10px;
     margin: auto;
@@ -74,7 +74,7 @@ h1 {
 }
 
 .btndel {
-    background-color: #c5324b;
+    background-color: #ff002b;
     color: white;
     padding: 6px 10px;
     margin: auto;
@@ -86,10 +86,8 @@ h1 {
 }
 
 .btndel:hover {
-    background-color: #7c1627;
+    background-color: #560513;
 }
-
-
 
 * {
     box-sizing: border-box;
@@ -109,7 +107,7 @@ h1 {
   }
   
   input[type=submit] {
-    background-color: #047BFC;
+    background-color: #04cefc;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -120,7 +118,7 @@ h1 {
   }
 
   input[type=submit]:hover {
-    background-color: #c7b9ac;
+    background-color: #2c2c2c;
   }
   
   .container {
@@ -155,4 +153,35 @@ h1 {
       width: 100%;
       margin-top: 0;
     }
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .pagination {
+    margin-left: 60rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0.3rem 1rem;
+    background-color: whitesmoke;
+  }
+
+  .pagination a{
+    text-decoration: none;
+  }
+
+  button[type=submit] {
+    background-color: #04cefc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+  }
+
+  button[type=submit]:hover {
+    background-color: #2c2c2c;
   }
