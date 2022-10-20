@@ -12,3 +12,6 @@ INSERT INTO data(string, integer, float, date, boolean) VALUES
 ('ujang', 24, 2.4, '1998-08-10', false),
 ('jajang', 28, 3.3, z'1992-07-23', false),
 ('cecep', 26, 6.4, '1994-06-12', true);
+
+INSERT INTO data(string, integer, float, date, boolean) VALUES
+('farraz',19, 2.8, '2003-09-13', false)
